@@ -12,9 +12,10 @@ public static function add_field($settings_page_id = '', $tab_id = '', $args = [
     if(empty($args['columns'])){
         $args['columns'] = 12;
     }
-	$meta_box_id = $settings_page_id . '-' . $tab_id;
-    if(array_key_exists($meta_box_id, self::$meta_boxes)){
-        self::$meta_boxes[$meta_box_id]['fields'][] = $args;
+	if(array_key_exists($settings_page_id, self::$meta_boxes)){
+       if(array_key_exists($tab_id, self::$meta_boxes[$settings_page_id])){
+			self::$meta_boxes[$settings_page_id][$tab_id]['fields'][] = $args;
+		}
     }
 }
 
@@ -76,11 +77,13 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
         self::$tabs[$settings_page_id][$tab_id] = $tab;
         ksort(self::$tabs[$settings_page_id]);
     }
-	$meta_box_id = $settings_page_id . '-' . $tab_id;
-    if(!array_key_exists($meta_box_id, self::$meta_boxes)){
-        self::$meta_boxes[$meta_box_id] = [
+	if(!array_key_exists($settings_page_id, self::$meta_boxes)){
+        self::$meta_boxes[$settings_page_id] = [];
+    }
+    if(!array_key_exists($tab_id, self::$meta_boxes[$settings_page_id])){
+        self::$meta_boxes[$settings_page_id][$tab_id] = [
             'fields' => [],
-            'id' => $meta_box_id,
+            'id' => $settings_page_id . '-' . $tab_id,
             'settings_pages' => $settings_page_id,
             'tab' => $tab_id,
             'title' => $tab,
@@ -94,25 +97,36 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
 static public function mb_settings_pages($settings_pages){
     if(self::$settings_pages){
         $general_id = IFWP_PLUS_SLUG;
-        if(array_key_exists($general_id, $settings_pages)){
-            $general = $settings_pages[$general_id];
-            unset($settings_pages[$general_id]);
-            $settings_pages = array_merge(array(
+        if(array_key_exists($general_id, self::$settings_pages)){
+            $general = self::$settings_pages[$general_id];
+            unset(self::$settings_pages[$general_id]);
+            self::$settings_pages = array_merge(array(
                 $general_id => $general,
-            ), $settings_pages);
+            ), self::$settings_pages);
         }
         foreach(self::$settings_pages as $settings_page_id => $settings_page){
-            $tabs = self::$tabs[$settings_page_id];
-            $general_id = $settings_page_id . '-' . sanitize_title('General');
-            if(!empty($tabs[$general_id])){
-                $general = $tabs[$general_id];
-                unset($tabs[$general_id]);
-                $tabs = array_merge(array(
-                    $general_id => $general,
-                ), $tabs);
-            }
-            $settings_page['tabs'] = $tabs;
-            $settings_pages[] = $settings_page;
+			$empty = true;
+			if(array_key_exists($settings_page_id, self::$meta_boxes)){
+				foreach(self::$meta_boxes[$settings_page_id] as $meta_box){
+					if(!empty($meta_box['fields'])){
+						$empty = false;
+						break;
+					}
+				}
+			}
+			if(!$empty){
+				$tabs = self::$tabs[$settings_page_id];
+				$general_id = $settings_page_id . '-' . sanitize_title('General');
+				if(!empty($tabs[$general_id])){
+					$general = $tabs[$general_id];
+					unset($tabs[$general_id]);
+					$tabs = array_merge(array(
+						$general_id => $general,
+					), $tabs);
+				}
+				$settings_page['tabs'] = $tabs;
+				$settings_pages[] = $settings_page;
+			}
         }
     }
     return $settings_pages;
@@ -123,9 +137,14 @@ static public function mb_settings_pages($settings_pages){
 static public function rwmb_meta_boxes($meta_boxes){
     if(is_admin()){
         if(self::$meta_boxes){
-            foreach(self::$meta_boxes as $meta_box){
-                $meta_box['fields'] = array_values($meta_box['fields']);
-                $meta_boxes[] = $meta_box;
+			foreach(self::$meta_boxes as $tmp){
+				if($tmp){
+					foreach($tmp as $meta_box){
+						if(!empty($meta_box['fields'])){
+							$meta_boxes[] = $meta_box;
+						}
+					}
+				}
             }
         }
     }
