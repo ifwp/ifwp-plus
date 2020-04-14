@@ -29,7 +29,7 @@ public function add_field($args = []){
         $args['id'] = uniqid();
     }
     //$args['id'] = sanitize_title($args['id']);
-    return _IFWP_Plus::maybe_add_field($this->tab_id, $args);
+    return _IFWP_Plus::add_field($this->tab_id, $args);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
