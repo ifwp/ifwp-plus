@@ -7,19 +7,19 @@ Domain Path:
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Network:
-Plugin Name: IFWP.+
+Plugin Name: IFWP Plus
 Plugin URI: https://ifwp.plus
 Text Domain: ifwp-plus
-Version: 0.4.14.8
+Version: 0.4.14.9
 */
 
 defined('ABSPATH') or die("Hi there! I'm just a plugin, not much I can do when called directly.");
 
-define('IFWP_PLUS_VERSION', '0.4.14.8');
+define('IFWP_PLUS_VERSION', '0.4.14.9');
 define('IFWP_PLUS_FILE', __FILE__);
 define('IFWP_PLUS_BASENAME', plugin_basename(IFWP_PLUS_FILE));
 define('IFWP_PLUS_DIR', plugin_dir_path(IFWP_PLUS_FILE));
-define('IFWP_PLUS_NAME', 'IFWP.+');
+define('IFWP_PLUS_NAME', 'IFWP Plus');
 define('IFWP_PLUS_SLUG', basename(IFWP_PLUS_BASENAME, '.php'));
 define('IFWP_PLUS_URL', plugin_dir_url(IFWP_PLUS_FILE));
 
