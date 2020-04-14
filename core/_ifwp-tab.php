@@ -19,7 +19,7 @@ public function add_custom_html($args = []){
     $args = wp_parse_args($args, [
         'type' => 'custom_html',
     ]);
-    return $this->add_field($atts);
+    return $this->add_field($args);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,8 +28,7 @@ public function add_field($args = []){
     if(empty($args['id'])){
         $args['id'] = uniqid();
     }
-    //$args['id'] = sanitize_title($args['id']);
-    return _IFWP_Plus::add_field($this->tab_id, $args);
+    return _IFWP_Plus::add_field($this->settings_page_id, $this->tab_id, $args);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +39,7 @@ public function add_switch($args = []){
         'style' => 'square',
         'type' => 'switch',
     ]);
-    return $this->add_field($atts);
+    return $this->add_field($args);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
