@@ -8,6 +8,17 @@ class _IFWP_Plus {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+public static function add_field($tab_id = '', $args = array()){
+    if(empty($args['columns'])){
+        $args['columns'] = 12;
+    }
+    if(array_key_exists($tab_id, self::$meta_boxes)){
+        self::$meta_boxes['fields'][$args['id']] = $args;
+    }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 public static function maybe_add_settings_page($settings_page = ''){
     if(!$settings_page){
         $settings_page = 'General';
@@ -64,27 +75,16 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
         self::$tabs[$settings_page_id][$tab_id] = $tab;
         ksort(self::$tabs[$settings_page_id]);
     }
-    return $tab_id;
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-private static function maybe_add_meta_box($settings_page_id = '', $meta_box = ''){
-    if(!$meta_box){
-        $meta_box = 'General';
-    }
-    $meta_box = wp_strip_all_tags($meta_box);
-    $meta_box_id = $settings_page_id . '-' . sanitize_title($meta_box);
-    if(!array_key_exists($meta_box_id, self::$meta_boxes)){
-        self::$meta_boxes[$meta_box_id] = [
+    if(!array_key_exists($tab_id, self::$meta_boxes)){
+        self::$meta_boxes[$tab_id] = [
             'fields' => [],
-            'id' => $meta_box_id,
+            'id' => $tab_id,
             'settings_pages' => $settings_page_id,
-            'tab' => $meta_box_id,
-            'title' => $meta_box,
+            'tab' => $tab_id,
+            'title' => $tab,
         ];
     }
-    return $meta_box_id;
+    return $tab_id;
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
