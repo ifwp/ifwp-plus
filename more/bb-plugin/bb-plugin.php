@@ -1,7 +1,7 @@
 <?php
 
 $tab = new _IFWP_Tab('Beaver Builder', 'Plugin');
-$tab->on('plugins_loaded', function(){
+$tab->on('plugins_loaded', function() use($tab){
     if($tab->is_plugin_active('bb-plugin/fl-builder.php')){
         $tab->add_switch([
             'id' => 'b4_colors',

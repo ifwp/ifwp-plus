@@ -93,7 +93,7 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
 
 static public function mb_settings_pages($settings_pages){
     if(self::$settings_pages){
-        $general_id = LDC_AIO_SLUG;
+        $general_id = IFWP_PLUS_SLUG;
         if(array_key_exists($general_id, $settings_pages)){
             $general = $settings_pages[$general_id];
             unset($settings_pages[$general_id]);
