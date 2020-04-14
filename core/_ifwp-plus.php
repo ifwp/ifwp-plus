@@ -89,11 +89,59 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+static public function mb_settings_pages($settings_pages){
+    if(self::$settings_pages){
+        $general_id = LDC_AIO_SLUG;
+        if(array_key_exists($general_id, $settings_pages)){
+            $general = $settings_pages[$general_id];
+            unset($settings_pages[$general_id]);
+            $settings_pages = array_merge(array(
+                $general_id => $general,
+            ), $settings_pages);
+        }
+        foreach(self::$settings_pages as $settings_page_id => $settings_page){
+            $tabs = self::$tabs[$settings_page_id];
+            $general_id = $settings_page_id . '-' . sanitize_title('General');
+            if(!empty($tabs[$general_id])){
+                $general = $tabs[$general_id];
+                unset($tabs[$general_id]);
+                $tabs = array_merge(array(
+                    $general_id => $general,
+                ), $tabs);
+            }
+            $settings_page['tabs'] = $tabs;
+            $settings_pages[] = $settings_page;
+        }
+    }
+    return $settings_pages;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+static public function rwmb_meta_boxes($meta_boxes){
+    if(is_admin()){
+        if(self::$meta_boxes){
+            foreach(self::$meta_boxes as $meta_box){
+                $meta_box['fields'] = array_values($meta_box['fields']);
+                $meta_boxes[] = $meta_box;
+            }
+        }
+    }
+    return $meta_boxes;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 private static $meta_boxes = [], $settings_pages = [], $tabs = [];
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 }
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+add_action('mb_settings_pages', array('_IFWP_Plus', 'mb_settings_pages'));
+add_action('rwmb_meta_boxes', array('_IFWP_Plus', 'rwmb_meta_boxes'));
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
