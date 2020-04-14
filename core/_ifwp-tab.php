@@ -10,7 +10,7 @@ class _IFWP_Tab {
 
 public function __construct($settings_page = '', $tab = ''){
     $this->settings_page_id = _IFWP_Plus::maybe_add_settings_page($settings_page);
-    $this->tab_id = _IFWP_Plus::add_tab($this->settings_page_id, $tab);
+    $this->tab_id = _IFWP_Plus::maybe_add_tab($this->settings_page_id, $tab);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
