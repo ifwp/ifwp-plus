@@ -30,16 +30,16 @@ $tab->add_switch([
 ]);
 if($tab->get_option('solve_conflicts', true)){
     $tab->on('wp_check_filetype_and_ext', function($wp_check_filetype_and_ext, $file, $filename, $mimes, $real_mime){
-        if($wp_check_filetype_and_ext['ext'] and $wp_check_filetype_and_ext['type']){
-    		return $wp_check_filetype_and_ext;
-    	}
-        if(0 === strpos($real_mime, 'audio/') or 0 === strpos($real_mime, 'video/')){
-            $filetype = wp_check_filetype($filename);
-            if(in_array(substr($filetype['type'], 0, strcspn($filetype['type'], '/')), array('audio', 'video'))){
-                $wp_check_filetype_and_ext['ext'] = $filetype['ext'];
-    			$wp_check_filetype_and_ext['type'] = $filetype['type'];
-            }
-        }
-    	return $wp_check_filetype_and_ext;
-    }, 10, 5);
+		if($wp_check_filetype_and_ext['ext'] and $wp_check_filetype_and_ext['type']){
+			return $wp_check_filetype_and_ext;
+		}
+		if(0 === strpos($real_mime, 'audio/') or 0 === strpos($real_mime, 'video/')){
+			$filetype = wp_check_filetype($filename);
+			if(in_array(substr($filetype['type'], 0, strcspn($filetype['type'], '/')), array('audio', 'video'))){
+				$wp_check_filetype_and_ext['ext'] = $filetype['ext'];
+				$wp_check_filetype_and_ext['type'] = $filetype['type'];
+			}
+		}
+		return $wp_check_filetype_and_ext;
+	}, 10, 5);
 }

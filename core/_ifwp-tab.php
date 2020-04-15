@@ -77,8 +77,8 @@ public function is_plugin_active($plugin = ''){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-public function on($function_to_add, $priority = 10, $accepted_args = 1){
-    return call_user_func('add_filter', $function_to_add, $priority, $accepted_args);
+public function on($tag = '', $function_to_add = '', $priority = 10, $accepted_args = 1){
+    return call_user_func('add_filter', $tag, $function_to_add, $priority, $accepted_args);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
