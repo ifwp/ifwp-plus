@@ -2,11 +2,11 @@
 
 $tab = new _IFWP_Tab('', 'Search');
 $tab->add_switch([
-    'id' => 'search_post_metadata',
-    'name' => 'Search Post Metadata?',
+    'id' => 'post_metadata',
+    'name' => 'Admin Post Metadata?',
     'std' => true,
 ]);
-if($tab->get_option('search_post_metadata', true)){
+if($tab->get_option('post_metadata', true)){
     $tab->on('posts_groupby', function($groupby){
         global $pagenow, $wpdb;
     	if(is_admin() and $pagenow === 'edit.php' and is_search()){
@@ -49,11 +49,11 @@ if($tab->get_option('search_post_metadata', true)){
     });
 }
 $tab->add_switch([
-    'id' => 'search_user_metadata',
-    'name' => 'Search User Metadata?',
+    'id' => 'user_metadata',
+    'name' => 'Admin User Metadata?',
     'std' => true,
 ]);
-if($tab->get_option('search_user_metadata', true)){
+if($tab->get_option('user_metadata', true)){
     $tab->on('users_pre_query', function($results, $user_query){
         global $pagenow, $wpdb;
     	if(is_admin() and $pagenow === 'users.php' and $user_query->get('search') and is_null($user_query->results)){
