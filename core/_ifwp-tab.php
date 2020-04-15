@@ -60,7 +60,7 @@ public function is_current_screen(){
     if(is_admin()){
         $current_screen = get_current_screen();
         if($current_screen){
-            if(str_replace('toplevel_page_', '', $current_screen->id) === IFWP_PLUS_SLUG or strpos($current_screen->id, IFWP_PLUS_SLUG . '_page_') === 0){
+            if(str_replace('toplevel_page_', '', $current_screen->id) === IFWP_PLUS_SLUG or strpos($current_screen->id, 'ifwp_page_') === 0){
                 return true;
             }
         }
