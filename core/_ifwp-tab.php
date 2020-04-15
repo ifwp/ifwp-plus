@@ -45,6 +45,15 @@ public function add_switch($args = []){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+public function add_text($args = []){
+    $args = wp_parse_args($args, [
+        'type' => 'text',
+    ]);
+    return $this->add_field($args);
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 public function get_option($option = '', $default = false){
     $option = $this->tab_id . '_' . $option;
     $options = get_option(str_replace('-', '_', $this->settings_page_id));
