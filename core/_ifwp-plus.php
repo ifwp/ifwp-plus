@@ -124,6 +124,11 @@ static public function mb_settings_pages($settings_pages){
 						$general_id => $general,
 					), $tabs);
 				}
+				foreach($tabs as $tab_id => $tab){
+					if(empty(self::$meta_boxes[$settings_page_id][$tab_id]['fields'])){
+						unset($tabs[$tab_id]);
+					}
+				}
 				$settings_page['tabs'] = $tabs;
 				$settings_pages[] = $settings_page;
 			}
