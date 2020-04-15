@@ -3,7 +3,7 @@
 $tab = new _IFWP_Tab('', 'Search');
 $tab->add_switch([
     'id' => 'post_metadata',
-    'name' => 'Admin Post Metadata?',
+    'name' => 'Admin post metadata?',
     'std' => true,
 ]);
 if($tab->get_option('post_metadata', true)){
@@ -50,7 +50,7 @@ if($tab->get_option('post_metadata', true)){
 }
 $tab->add_switch([
     'id' => 'user_metadata',
-    'name' => 'Admin User Metadata?',
+    'name' => 'Admin user metadata?',
     'std' => true,
 ]);
 if($tab->get_option('user_metadata', true)){
