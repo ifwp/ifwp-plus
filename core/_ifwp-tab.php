@@ -28,6 +28,7 @@ public function add_field($args = []){
     if(empty($args['id'])){
         $args['id'] = uniqid();
     }
+    $args['id'] = $this->tab_id . '_' . $args['id'];
     return _IFWP_Plus::add_field($this->settings_page_id, $this->tab_id, $args);
 }
 
@@ -45,6 +46,7 @@ public function add_switch($args = []){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 public function get_option($option = '', $default = false){
+    $option = $this->tab_id . '_' . $option;
     $options = get_option(str_replace('-', '_', $this->settings_page_id));
     if(isset($options[$option])){
         return $options[$option];
