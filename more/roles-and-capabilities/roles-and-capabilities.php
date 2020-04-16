@@ -107,11 +107,7 @@ if($tab->get_option('hide_site', false)){
                 auth_redirect();
             } else {
                 if(!current_user_can($tab->get_option('hide_site_capability', 'read'))){
-                    wp_die(
-                        '<h1>' . __('You need a higher level of permission.') . '</h1>' .
-		                '<p>' . __('Sorry, you are not allowed to access this page.') . ' <a href="' . esc_url(wp_logout_url()) . '">' . __('Log out') . '</a></p>',
-                        403
-                    );
+                    wp_die('<h1>' . __('You need a higher level of permission.') . '</h1>' . '<p>' . __('Sorry, you are not allowed to access this page.') . '</p>', 403);
                 }
             }
         }
