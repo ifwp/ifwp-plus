@@ -81,30 +81,6 @@ if($tab->get_option('hide_dashboard', false)){
     });
 }
 $tab->add_switch([
-    'id' => 'hide_rest_api',
-    'name' => 'Hide the REST API?',
-    'std' => false,
-]);
-$tab->add_text([
-    'id' => 'hide_rest_api_capability',
-    'name' => '— Minimum capability required to show the REST API:',
-    'std' => 'read',
-    'visible' => array('hide_rest_api', true),
-]);
-if($tab->get_option('hide_rest_api', false)){
-    $tab->on('rest_authentication_errors', function($error) use($tab){
-        if($error){
-            return $error;
-        }
-        if(!current_user_can($tab->get_option('hide_rest_api_capability', 'read'))){
-            return new WP_Error('rest_user_cannot_view', __('You need a higher level of permission.'), [
-                'status' => 401,
-            ]);
-        }
-        return null;
-    });
-}
-$tab->add_switch([
     'id' => 'hide_site',
     'name' => 'Hide the entire site?',
     'std' => false,
@@ -126,11 +102,44 @@ $tab->add_field([
 ]);
 if($tab->get_option('hide_site', false)){
     $tab->on('template_redirect', function() use($tab){
-        if(!current_user_can($tab->get_option('hide_site_capability', 'read'))){
-            if(!in_array(get_the_ID(), $tab->get_option('hide_site_excluded', []))){
+        if(!in_array(get_the_ID(), $tab->get_option('hide_site_excluded', []))){
+            if(!is_user_logged_in()){
                 auth_redirect();
+            } else {
+                if(!current_user_can($tab->get_option('hide_site_capability', 'read'))){
+                    wp_die(
+                        '<h1>' . __('You need a higher level of permission.') . '</h1>' .
+		                '<p>' . __('Sorry, you are not allowed to access this page.') . '</p>' .
+                        '<p><a href="' . esc_url(wp_logout_url()) . '">' . __('Log Out') . '</a></p>',
+                        403
+                    );
+                }
             }
         }
+    });
+}
+$tab->add_switch([
+    'id' => 'hide_rest_api',
+    'name' => 'Hide the REST API?',
+    'std' => false,
+]);
+$tab->add_text([
+    'id' => 'hide_rest_api_capability',
+    'name' => '— Minimum capability required to show the REST API:',
+    'std' => 'read',
+    'visible' => array('hide_rest_api', true),
+]);
+if($tab->get_option('hide_rest_api', false)){
+    $tab->on('rest_authentication_errors', function($error) use($tab){
+        if($error){
+            return $error;
+        }
+        if(!current_user_can($tab->get_option('hide_rest_api_capability', 'read'))){
+            return new WP_Error('rest_user_cannot_view', __('You need a higher level of permission.'), [
+                'status' => 401,
+            ]);
+        }
+        return null;
     });
 }
 $tab->add_switch([
