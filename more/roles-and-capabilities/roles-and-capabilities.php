@@ -1,5 +1,6 @@
 <?php
 
+$tab = new _IFWP_Tab('', 'Roles and capabilities');
 $tab->add_switch([
     'id' => 'hide_media',
     'name' => 'Hide others media?',
@@ -56,7 +57,6 @@ if($tab->get_option('hide_posts', false)){
         return $query;
     });
 }
-$tab = new _IFWP_Tab('', 'Roles and capabilities');
 $tab->add_switch([
     'id' => 'hide_dashboard',
     'name' => 'Hide the dashboard?',
