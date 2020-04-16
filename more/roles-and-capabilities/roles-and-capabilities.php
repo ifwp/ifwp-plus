@@ -100,9 +100,27 @@ $tab->add_field([
     'type' => 'post',
     'visible' => array('hide_site', true),
 ]);
+$tab->add_field([
+    'id' => 'hide_site_special',
+    'multiple' => true,
+    'name' => '— Special pages:',
+    'options' => array(
+        'front_end' => 'Front end',
+        'home' => 'Home',
+    ),
+    'placeholder' => 'Select pages',
+    'type' => 'select_advanced',
+    'visible' => array('hide_site', true),
+]);
 if($tab->get_option('hide_site', false)){
     $tab->on('template_redirect', function() use($tab){
         if(!in_array(get_the_ID(), $tab->get_option('hide_site_excluded', []))){
+            if(is_front_page() and in_array('front_end', $tab->get_option('hide_site_special', []))){
+                return;
+            }
+            if(is_home() and in_array('home', $tab->get_option('hide_site_special', []))){
+                return;
+            }
             if(!is_user_logged_in()){
                 auth_redirect();
             } else {
