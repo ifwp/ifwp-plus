@@ -102,6 +102,7 @@ $tab->add_field([
 ]);
 $tab->add_field([
     'id' => 'hide_site_special',
+    'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/basics/conditional-tags/#the-conditions-for" target="_blank">The Conditions For</a>.',
     'multiple' => true,
     'name' => '— Special pages:',
     'options' => array(
