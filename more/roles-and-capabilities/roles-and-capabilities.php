@@ -4,17 +4,17 @@ $tab = new _IFWP_Tab('', 'Roles and capabilities');
 $tab->add_switch([
     'id' => 'hide_media',
     'name' => 'Hide others media?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_media_capability',
     'name' => '— Minimum capability required to show others media:',
-    'std' => 'edit_posts',
+    'std' => 'edit_others_posts',
     'visible' => array('hide_media', true),
 ]);
-if($tab->get_option('hide_media', false)){
+if($tab->get_option('hide_media', true)){
     $tab->on('ajax_query_attachments_args', function($query) use($tab){
-        if(!current_user_can($tab->get_option('hide_media_capability', 'edit_posts'))){
+        if(!current_user_can($tab->get_option('hide_media_capability', 'edit_others_posts'))){
             $query['author'] = get_current_user_id();
         }
         return $query;
@@ -23,7 +23,7 @@ if($tab->get_option('hide_media', false)){
 $tab->add_switch([
     'id' => 'hide_posts',
     'name' => 'Hide others posts?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_posts_capability',
@@ -31,7 +31,7 @@ $tab->add_text([
     'std' => 'edit_others_posts',
     'visible' => array('hide_posts', true),
 ]);
-if($tab->get_option('hide_posts', false)){
+if($tab->get_option('hide_posts', true)){
     $tab->on('current_screen', function($current_screen) use($tab){
         global $pagenow;
         if($pagenow != 'edit.php'){
@@ -60,7 +60,7 @@ if($tab->get_option('hide_posts', false)){
 $tab->add_switch([
     'id' => 'hide_dashboard',
     'name' => 'Hide the dashboard?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_dashboard_capability',
@@ -68,7 +68,7 @@ $tab->add_text([
     'std' => 'edit_posts',
     'visible' => array('hide_dashboard', true),
 ]);
-if($tab->get_option('hide_dashboard', false)){
+if($tab->get_option('hide_dashboard', true)){
     $tab->on('admin_init', function() use($tab){
         if(wp_doing_ajax()){
             return;
@@ -116,7 +116,7 @@ if($tab->get_option('hide_site', false)){
 $tab->add_switch([
     'id' => 'hide_rest_api',
     'name' => 'Hide the REST API?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_rest_api_capability',
@@ -124,7 +124,7 @@ $tab->add_text([
     'std' => 'read',
     'visible' => array('hide_rest_api', true),
 ]);
-if($tab->get_option('hide_rest_api', false)){
+if($tab->get_option('hide_rest_api', true)){
     $tab->on('rest_authentication_errors', function($error) use($tab){
         if($error){
             return $error;
@@ -140,7 +140,7 @@ if($tab->get_option('hide_rest_api', false)){
 $tab->add_switch([
     'id' => 'hide_toolbar',
     'name' => 'Hide the toolbar?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_toolbar_capability',
@@ -148,7 +148,7 @@ $tab->add_text([
     'std' => 'edit_posts',
     'visible' => array('hide_toolbar', true),
 ]);
-if($tab->get_option('hide_toolbar', false)){
+if($tab->get_option('hide_toolbar', true)){
     $tab->on('show_admin_bar', function($show) use($tab){
         if(!current_user_can($tab->get_option('hide_toolbar_capability', 'edit_posts'))){
             return false;
