@@ -215,7 +215,7 @@ class _IFWP_Confirm_User_Email extends _IFWP_Tab {
                 $redirect_to = $request_data['redirect_to'];
             }
         }
-        $message  = '<p class="success">' . $tab->get_option('message') . '</p>';
+        $message  = '<p class="success">' . $this->get_option('message') . '</p>';
         return $message;
     }
 
