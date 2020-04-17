@@ -64,7 +64,12 @@ class _IFWP_Confirm_User_Email extends _IFWP_Tab {
 
     private function fake_confirmation($user = false){
         $user = $this->get_user($user);
-		$request_id = $this->create_user_request($user);
+		$incompleted_requests = $this->incompleted_user_requests($user);
+		if($incompleted_requests){
+			$request_id = $incompleted_requests[0];
+		} else {
+			$request_id = $this->create_user_request($user);
+		}
 		if(is_wp_error($request_id)){
 			return $request_id;
 		}
@@ -244,21 +249,15 @@ class _IFWP_Confirm_User_Email extends _IFWP_Tab {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public function validate_password_reset($errors, $user){
-        if($errors->has_errors()){
-            return;
+        if(!$errors->has_errors() and isset($_POST['pass1']) and !empty($_POST['pass1'])){
+            if(user_can($user->ID, $this->get_option('capability'))){
+                return;
+            }
+            if($this->completed_user_requests($user)){
+                return;
+            }
+            $this->fake_confirmation($user);
         }
-        if(!is_a($user, 'WP_User')){
-            return;
-        }
-        if(user_can($user->ID, $this->get_option('capability'))){
-            return;
-        }
-        if($this->completed_user_requests($user)){
-            return;
-        }
-        if(isset($_POST['pass1']) and $_POST['pass1']){ // validar si aún es necesario esto
-			$this->fake_confirmation($user);
-		}
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
