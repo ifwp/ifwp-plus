@@ -47,10 +47,10 @@ public static function admin_notices(){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 public static function maybe_add_settings_page($settings_page = ''){
+    $settings_page = wp_strip_all_tags($settings_page);
     if(!$settings_page){
         $settings_page = 'General';
     }
-    $settings_page = wp_strip_all_tags($settings_page);
     $settings_page_id = IFWP_PLUS_SLUG;
     if($settings_page != 'General'){
         $settings_page_id .= '-' . sanitize_title($settings_page);
@@ -93,10 +93,10 @@ public static function maybe_add_tab($settings_page_id = '', $tab = ''){
     if(!array_key_exists($settings_page_id, self::$tabs)){
         self::$tabs[$settings_page_id] = [];
     }
+    $tab = wp_strip_all_tags($tab);
     if(!$tab){
         $tab = 'General';
     }
-    $tab = wp_strip_all_tags($tab);
     $tab_id = sanitize_title($tab);
     if(!array_key_exists($tab_id, self::$tabs[$settings_page_id])){
         self::$tabs[$settings_page_id][$tab_id] = $tab;
@@ -141,7 +141,7 @@ static public function mb_settings_pages($settings_pages){
 			}
 			if(!$empty){
 				$tabs = self::$tabs[$settings_page_id];
-				$general_id = $settings_page_id . '-' . sanitize_title('General');
+				$general_id = sanitize_title('General');
 				if(!empty($tabs[$general_id])){
 					$general = $tabs[$general_id];
 					unset($tabs[$general_id]);
