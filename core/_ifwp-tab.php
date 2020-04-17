@@ -15,6 +15,12 @@ public function __construct($settings_page = '', $tab = ''){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+public function add_admin_notice($admin_notice = '', $class = 'error', $is_dismissible = false){
+    _IFWP_Plus::add_admin_notice($admin_notice, $class, $is_dismissible);
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 public function add_custom_html($args = []){
     $args = wp_parse_args($args, [
         'type' => 'custom_html',

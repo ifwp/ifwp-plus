@@ -8,6 +8,21 @@ class _IFWP_Plus {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+public static function add_admin_notice($admin_notice = '', $class = 'error', $is_dismissible = false){
+    if($admin_notice){
+		if(!in_array($class, array('error', 'warning', 'success', 'info'))){
+			$class = 'warning';
+		}
+		if($is_dismissible){
+			$class .= ' is-dismissible';
+		}
+		$admin_notice = '<div class="notice notice-' . $class . '"><p>' . $admin_notice . '</p></div>';
+        self::$admin_notices[] = $admin_notice;
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 public static function add_field($settings_page_id = '', $tab_id = '', $args = []){
     if(empty($args['columns'])){
         $args['columns'] = 12;
@@ -16,6 +31,16 @@ public static function add_field($settings_page_id = '', $tab_id = '', $args = [
        if(array_key_exists($tab_id, self::$meta_boxes[$settings_page_id])){
 			self::$meta_boxes[$settings_page_id][$tab_id]['fields'][] = $args;
 		}
+    }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+public static function admin_notices(){
+    if(self::$admin_notices){
+        foreach(self::$admin_notices as $admin_notice){
+            echo $admin_notice;
+        }
     }
 }
 
@@ -158,7 +183,7 @@ static public function rwmb_meta_boxes($meta_boxes){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-private static $meta_boxes = [], $settings_pages = [], $tabs = [];
+private static $admin_notices = [], $meta_boxes = [], $settings_pages = [], $tabs = [];
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -166,6 +191,7 @@ private static $meta_boxes = [], $settings_pages = [], $tabs = [];
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+add_action('admin_notices', array('_IFWP_Plus', 'admin_notices'));
 add_action('mb_settings_pages', array('_IFWP_Plus', 'mb_settings_pages'));
 add_action('rwmb_meta_boxes', array('_IFWP_Plus', 'rwmb_meta_boxes'));
 
