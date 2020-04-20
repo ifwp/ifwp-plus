@@ -5,37 +5,36 @@ class _IFWP_Zoom_Request {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function delete($args = []){
-        return $this>request('delete', $args);
+        return $this->request('delete', $args);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function get($args = []){
-        return $this>request('get', $args);
+        return $this->request('get', $args);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function patch($args = []){
-        return $this>request('patch', $args);
+        return $this->request('patch', $args);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function post($args = []){
-        return $this>request('post', $args);
+        return $this->request('post', $args);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function put($args = []){
-        return $this>request('put', $args);
+        return $this->request('put', $args);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    function __construct(){
-        $args = func_get_args();
+    function __construct($args = []){
         if($args){
             $this->endpoint = array_shift($args);
             if($args){
