@@ -34,6 +34,9 @@ public function add_field($args = []){
     if(empty($args['id'])){
         $args['id'] = uniqid();
     }
+    if(empty($args['name'])){
+        $args['name'] = '';
+    }
     $args['id'] = $this->tab_id . '_' . $args['id'];
     return _IFWP_Plus::add_field($this->settings_page_id, $this->tab_id, $args);
 }
