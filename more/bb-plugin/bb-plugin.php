@@ -21,9 +21,8 @@ $tab->on('plugins_loaded', function() use($tab){
         $tab->add_switch([
             'id' => 'disable_column_resizing',
             'name' => 'Disable column resizing?',
-            'std' => true,
         ]);
-        if($tab->get_option('disable_column_resizing', true)){
+        if($tab->get_option('disable_column_resizing', false)){
             $tab->on('wp_head', function(){
                 if(isset($_GET['fl_builder'])){ ?>
                     <style>

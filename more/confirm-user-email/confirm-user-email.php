@@ -27,11 +27,10 @@ $tab->add_field([
     'visible' => array('confirm_user_email', true),
 ]);
 $tab->add_field([
-    'desc' => 'Do not change the placeholders. 1: Email address.',
     'id' => 'pending',
     'name' => '— Pending message:',
     'rows' => 1,
-    'std' => 'Your email address has not been confirmed yet. Please check your inbox at %1$s for a confirmation email.',
+    'std' => 'Your email address has not been confirmed yet. Please check your inbox at %s for a confirmation email.',
     'type' => 'textarea',
     'visible' => array('confirm_user_email', true),
 ]);

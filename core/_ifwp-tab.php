@@ -60,6 +60,22 @@ if(!class_exists('_IFWP_Tab')){
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        public function are_plugins_active($plugins = []){
+            $r = false;
+            if($plugins){
+                $r = true;
+                foreach($plugins as $plugin){
+                    if(!$this->is_plugin_active($plugin)){
+                        $r = false;
+                        break;
+                    }
+                }
+            }
+            return $r;
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
         public function get_option($option = '', $default = false){
             $option = $this->tab_id . '_' . $option;
             $options = get_option(str_replace('-', '_', $this->settings_page_id));
