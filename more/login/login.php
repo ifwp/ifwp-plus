@@ -8,8 +8,12 @@ $tab->add_switch([
 ]);
 $header_text = $tab->get_option('header_text', true);
 if($header_text){
-	$tab->on('login_headertext', function(){
-		return get_option('blogname');
+	$tab->on('login_headertext', function($login_headertext){
+        global $pagenow;
+        if($pagenow == 'wp-login.php'){
+            return get_option('blogname');
+        }
+        return $login_headertext;
 	});
 }
 $tab->add_switch([
@@ -19,8 +23,12 @@ $tab->add_switch([
 ]);
 $header_url = $tab->get_option('header_url', true);
 if($header_url){
-	$tab->on('login_headerurl', function(){
-		return home_url();
+	$tab->on('login_headerurl', function($login_headerurl){
+        global $pagenow;
+        if($pagenow == 'wp-login.php'){
+            return home_url();
+        }
+        return $login_headerurl;
 	});
 }
 $tab->add_field([
