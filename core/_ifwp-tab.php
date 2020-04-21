@@ -78,8 +78,14 @@ public function is_current_screen(){
     if(is_admin()){
         $current_screen = get_current_screen();
         if($current_screen){
-            if(str_replace('toplevel_page_', '', $current_screen->id) === IFWP_PLUS_SLUG or strpos($current_screen->id, 'ifwp_page_') === 0){
-                return true;
+            if($this->settings_page_id == IFWP_PLUS_SLUG){
+                if($current_screen->id == 'toplevel_page_' . IFWP_PLUS_SLUG){
+                    return true;
+                }
+            } else {
+                if($current_screen->id == 'ifwp_page_' . $this->settings_page_id){
+                    return true;
+                }
             }
         }
     }

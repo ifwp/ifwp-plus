@@ -1,28 +1,39 @@
 <?php
 
-$tab = new _IFWP_Tab('Zoom');
-$tab->on('admin_footer', function() use($tab){
-	if($tab->is_current_screen()){ ?>
-		<script>
-			function ifwp_toggle_password(){
-				if(jQuery('#general_zoom_api_secret').attr('type') == 'text'){
-					jQuery('#general_zoom_api_secret').attr('type', 'password');
-					jQuery('#ifwp_hide_password').text('Show password');
-				} else {
-					jQuery('#general_zoom_api_secret').attr('type', 'text');
-					jQuery('#ifwp_hide_password').text('Hide password');
+class _IFWP_Zoom extends _IFWP_Tab {
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    function admin_footer(){
+		if($this->is_current_screen()){ ?>
+			<script>
+				function ifwp_toggle_password(){
+					var element = jQuery('#<?php echo $this->tab_id; ?>_zoom_api_secret');
+					if(element.attr('type') == 'text'){
+						element.attr('type', 'password');
+						jQuery('#ifwp_hide_password').text('Show password');
+					} else {
+						element.attr('type', 'text');
+						jQuery('#ifwp_hide_password').text('Hide password');
+					}
 				}
-			}
-			jQuery(function($){
-				ifwp_toggle_password();
-				$('#ifwp_hide_password').on('click', function(e){
-					e.preventDefault();
+				jQuery(function($){
 					ifwp_toggle_password();
+					$('#ifwp_hide_password').on('click', function(e){
+						e.preventDefault();
+						ifwp_toggle_password();
+					});
 				});
-			});
-		</script><?php
-	}
-});
+			</script><?php
+		}
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+}
+
+$tab = new _IFWP_Zoom('Zoom');
+$tab->on('admin_footer', [$tab, 'admin_footer']);
 $tab->add_field([
     'id' => 'zoom_api_key',
     'name' => 'Zoom API Key',
