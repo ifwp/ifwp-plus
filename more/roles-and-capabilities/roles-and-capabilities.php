@@ -135,7 +135,6 @@ if($tab->get_option('hide_site', false)){
 $tab->add_switch([
     'id' => 'hide_rest_api',
     'name' => 'Hide the REST API?',
-    'std' => true,
 ]);
 $tab->add_text([
     'id' => 'hide_rest_api_capability',
@@ -143,7 +142,7 @@ $tab->add_text([
     'std' => 'read',
     'visible' => array('hide_rest_api', true),
 ]);
-if($tab->get_option('hide_rest_api', true)){
+if($tab->get_option('hide_rest_api', false)){
     $tab->on('rest_authentication_errors', function($error) use($tab){
         if($error){
             return $error;
