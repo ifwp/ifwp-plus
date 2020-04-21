@@ -1,11 +1,34 @@
 <?php
 
 $tab = new _IFWP_Tab('', 'Login');
+$tab->add_switch([
+    'id' => 'header_text',
+    'name' => 'Local header text?',
+    'std' => true,
+]);
+$header_text = $tab->get_option('header_text', true);
+if($header_text){
+	$tab->on('login_headertext', function(){
+		return get_option('blogname');
+	});
+}
+$tab->add_switch([
+    'id' => 'header_url',
+    'name' => 'Local header URL?',
+    'std' => true,
+]);
+$header_url = $tab->get_option('header_url', true);
+if($header_url){
+	$tab->on('login_headerurl', function(){
+		return home_url();
+	});
+}
 $tab->add_field([
+    'label-description' => 'Size: thumbnail.',
     'id' => 'logo',
     'max_file_uploads' => 1,
     'max_status' => false,
-    'name' => 'Logo:',
+    'name' => 'Logo',
     'type' => 'image_advanced',
 ]);
 $logo = $tab->get_option('logo', []);
@@ -25,11 +48,5 @@ if($logo){
 				background-size: 150px;
 			}
 		</style><?php
-	});
-	$tab->on('login_headertext', function(){
-		return get_option('blogname');
-	});
-	$tab->on('login_headerurl', function(){
-		return home_url();
 	});
 }
