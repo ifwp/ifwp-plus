@@ -2,7 +2,7 @@
 
 $tab = new _IFWP_Tab('', 'Media');
 $tab->add_switch([
-    'label-description' => 'Sizes: hd and full-hd.',
+    'label_description' => 'Sizes: hd and full-hd.',
     'id' => 'add_larger_image_sizes',
     'name' => 'Add larger image sizes?',
     'std' => true,

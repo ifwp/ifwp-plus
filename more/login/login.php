@@ -24,7 +24,7 @@ if($header_url){
 	});
 }
 $tab->add_field([
-    'label-description' => 'Size: thumbnail.',
+    'label_description' => 'Size: thumbnail.',
     'id' => 'logo',
     'max_file_uploads' => 1,
     'max_status' => false,
