@@ -1,7 +1,7 @@
 <?php
 
-if(!class_exists('_IFWP_Confirm_User_Email')){
-    class _IFWP_Confirm_User_Email extends _IFWP_Tab {
+if(!class_exists('_IFWP_Login')){
+    class _IFWP_Login extends _IFWP_Tab {
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

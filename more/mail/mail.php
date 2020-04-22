@@ -4,7 +4,7 @@ $tab = new _IFWP_Mail('', 'Mail');
 $tab->add_switch([
     'id' => 'email_template',
     'name' => 'Use an email template?',
-    'std' => false,
+    'std' => true,
 ]);
 $tab->add_field([
     'id' => 'prepend',
@@ -24,7 +24,7 @@ $tab->add_field([
     'type' => 'textarea',
     'visible' => array('email_template', true),
 ]);
-if($tab->get_option('email_template', false)){
+if($tab->get_option('email_template', true)){
     $tab->on('wp_mail', [$tab, 'wp_mail'], 99);
     $tab->on('wp_mail_content_type', [$tab, 'wp_mail_content_type']);
 }
