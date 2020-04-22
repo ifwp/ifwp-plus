@@ -146,7 +146,7 @@ $tab->add_text([
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
-    'columns' => 8,
+    'columns' => 4,
     'id' => 'hide_site_special',
     'multiple' => true,
     'name' => '— Exclude special pages:',
@@ -160,7 +160,7 @@ $tab->add_field([
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
-    'columns' => 4,
+    'columns' => 8,
     'id' => 'hide_site_excluded',
     'multiple' => true,
     'name' => '— Exclude other pages:',
