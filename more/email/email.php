@@ -9,7 +9,7 @@ $tab->add_switch([
 $tab->add_field([
     'id' => 'prepend',
     'name' => '— Prepend:',
-    'rows' => 1,
+    'rows' => 3,
     'std' => '<div style="width: 100%; background-color: #eaeced; padding:50px 0;"><div style="width: 600px; margin: 0 auto; background-color: #fff;"><div style="padding: 50px;"><p style="font-family: \'Helvetica Neue\', sans-serif; margin: 0; color: #808080; line-height: 1.6;">',
     'type' => 'textarea',
     'visible' => array('email_template', true),
