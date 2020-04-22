@@ -145,18 +145,28 @@ $tab->add_text([
     'std' => 'read',
     'visible' => array('hide_site', true),
 ]);
-$tab->add_field([
+$tab->add_custom_html([
     'columns' => 4,
+    'std' => '&nbsp;',
+    'visible' => array('hide_site', true),
+]);
+$tab->add_field([
+    'columns' => 8,
     'id' => 'hide_site_special',
-    'multiple' => true,
+    'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/basics/conditional-tags/#the-conditions-for" target="_blank">The Conditions For</a>.',
     'name' => '— Exclude special pages:',
     'options' => array(
         'front_end' => 'Front end',
         'home' => 'Home',
     ),
     'placeholder' => 'Select pages',
-    'std' => ['front_end'],
+    'std' => 'front_end',
     'type' => 'select_advanced',
+    'visible' => array('hide_site', true),
+]);
+$tab->add_custom_html([
+    'columns' => 4,
+    'std' => '&nbsp;',
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
