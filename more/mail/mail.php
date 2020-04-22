@@ -1,6 +1,6 @@
 <?php
 
-$tab = new _IFWP_Email('', 'Email');
+$tab = new _IFWP_Mail('', 'Mail');
 $tab->add_switch([
     'id' => 'email_template',
     'name' => 'Use an email template?',
