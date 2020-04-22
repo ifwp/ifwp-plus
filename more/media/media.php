@@ -26,7 +26,7 @@ if($tab->get_option('remove_accents', true)){
 }
 $tab->add_switch([
     'id' => 'solve_conflicts',
-    'name' => 'Solve conflicts?',
+    'name' => 'Solve filetype conflicts?',
     'std' => true,
 ]);
 if($tab->get_option('solve_conflicts', true)){

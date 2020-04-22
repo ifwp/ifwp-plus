@@ -8,7 +8,7 @@ $tab->add_switch([
 ]);
 $tab->add_text([
     'id' => 'capability',
-    'name' => '— Minimum capability required to bypass the user email confirmation:',
+    'name' => '— Minimum capability required to bypass the confirmation:',
     'std' => 'manage_options',
     'visible' => array('confirm_user_email', true),
 ]);
