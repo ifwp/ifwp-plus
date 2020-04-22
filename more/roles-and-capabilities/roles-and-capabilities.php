@@ -146,26 +146,27 @@ $tab->add_text([
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
-    'columns' => 4,
-    'id' => 'hide_site_excluded',
-    'multiple' => true,
-    'name' => '— Excluded pages:',
-    'placeholder' => 'Select pages',
-    'post_type' => 'page',
-    'type' => 'post',
-    'visible' => array('hide_site', true),
-]);
-$tab->add_field([
     'columns' => 8,
     'id' => 'hide_site_special',
     'multiple' => true,
-    'name' => '— Special pages:',
+    'name' => '— Exclude special pages:',
     'options' => array(
         'front_end' => 'Front end',
         'home' => 'Home',
     ),
     'placeholder' => 'Select pages',
+    'std' => ['front_end'],
     'type' => 'select_advanced',
+    'visible' => array('hide_site', true),
+]);
+$tab->add_field([
+    'columns' => 4,
+    'id' => 'hide_site_excluded',
+    'multiple' => true,
+    'name' => '— Exclude other pages:',
+    'placeholder' => 'Select pages',
+    'post_type' => 'page',
+    'type' => 'post',
     'visible' => array('hide_site', true),
 ]);
 if($tab->get_option('hide_site', false)){
