@@ -1,29 +1,6 @@
 <?php
 
 $tab = new _IFWP_Login('', 'Login');
-
-$tab->add_switch([
-    'id' => 'header_text',
-    'name' => 'Local header text?',
-    'std' => true,
-]);
-$header_text = $tab->get_option('header_text', true);
-if($header_text){
-	$tab->on('login_headertext', function($login_headertext){
-        return get_option('blogname');
-	});
-}
-$tab->add_switch([
-    'id' => 'header_url',
-    'name' => 'Local header URL?',
-    'std' => true,
-]);
-$header_url = $tab->get_option('header_url', true);
-if($header_url){
-	$tab->on('login_headerurl', function($login_headerurl){
-        return home_url();
-	});
-}
 $tab->add_field([
     'label_description' => 'Size: thumbnail.',
     'id' => 'logo',
@@ -51,7 +28,28 @@ if($logo){
 		</style><?php
 	});
 }
-
+$tab->add_switch([
+    'id' => 'header_text',
+    'name' => 'Local header text?',
+    'std' => true,
+]);
+$header_text = $tab->get_option('header_text', true);
+if($header_text){
+	$tab->on('login_headertext', function($login_headertext){
+        return get_option('blogname');
+	});
+}
+$tab->add_switch([
+    'id' => 'header_url',
+    'name' => 'Local header URL?',
+    'std' => true,
+]);
+$header_url = $tab->get_option('header_url', true);
+if($header_url){
+	$tab->on('login_headerurl', function($login_headerurl){
+        return home_url();
+	});
+}
 $tab->add_switch([
     'id' => 'confirm_user_email',
     'name' => 'Confirm user email?',

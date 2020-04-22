@@ -2,11 +2,59 @@
 
 $tab = new _IFWP_Tab('', 'Roles and capabilities');
 $tab->add_switch([
+    'columns' => 6,
+    'id' => 'hide_dashboard',
+    'name' => 'Hide the dashboard?',
+    'std' => true,
+]);
+$tab->add_text([
+    'columns' => 6,
+    'id' => 'hide_dashboard_capability',
+    'name' => '— Minimum capability required to show the dashboard:',
+    'std' => 'edit_posts',
+    'visible' => array('hide_dashboard', true),
+]);
+if($tab->get_option('hide_dashboard', true)){
+    $tab->on('admin_init', function() use($tab){
+        if(wp_doing_ajax()){
+            return;
+        }
+        if(current_user_can($tab->get_option('hide_dashboard_capability', 'edit_posts'))){
+            return;
+        }
+        wp_safe_redirect(home_url());
+        exit;
+    });
+}
+$tab->add_switch([
+    'columns' => 6,
+    'id' => 'hide_toolbar',
+    'name' => 'Hide the toolbar?',
+    'std' => true,
+]);
+$tab->add_text([
+    'columns' => 6,
+    'id' => 'hide_toolbar_capability',
+    'name' => '— Minimum capability required to show the toolbar:',
+    'std' => 'edit_posts',
+    'visible' => array('hide_toolbar', true),
+]);
+if($tab->get_option('hide_toolbar', true)){
+    $tab->on('show_admin_bar', function($show) use($tab){
+        if(!current_user_can($tab->get_option('hide_toolbar_capability', 'edit_posts'))){
+            return false;
+        }
+        return $show;
+    });
+}
+$tab->add_switch([
+    'columns' => 6,
     'id' => 'hide_media',
     'name' => 'Hide others media?',
     'std' => true,
 ]);
 $tab->add_text([
+    'columns' => 6,
     'id' => 'hide_media_capability',
     'name' => '— Minimum capability required to show others media:',
     'std' => 'edit_others_posts',
@@ -21,11 +69,13 @@ if($tab->get_option('hide_media', true)){
     });
 }
 $tab->add_switch([
+    'columns' => 6,
     'id' => 'hide_posts',
     'name' => 'Hide others posts?',
     'std' => true,
 ]);
 $tab->add_text([
+    'columns' => 6,
     'id' => 'hide_posts_capability',
     'name' => '— Minimum capability required to show others posts:',
     'std' => 'edit_others_posts',
@@ -58,40 +108,45 @@ if($tab->get_option('hide_posts', true)){
     });
 }
 $tab->add_switch([
-    'id' => 'hide_dashboard',
-    'name' => 'Hide the dashboard?',
-    'std' => true,
+    'columns' => 6,
+    'id' => 'hide_rest_api',
+    'name' => 'Hide the REST API?',
 ]);
 $tab->add_text([
-    'id' => 'hide_dashboard_capability',
-    'name' => '— Minimum capability required to show the dashboard:',
-    'std' => 'edit_posts',
-    'visible' => array('hide_dashboard', true),
+    'columns' => 6,
+    'id' => 'hide_rest_api_capability',
+    'name' => '— Minimum capability required to show the REST API:',
+    'std' => 'read',
+    'visible' => array('hide_rest_api', true),
 ]);
-if($tab->get_option('hide_dashboard', true)){
-    $tab->on('admin_init', function() use($tab){
-        if(wp_doing_ajax()){
-            return;
+if($tab->get_option('hide_rest_api', false)){
+    $tab->on('rest_authentication_errors', function($error) use($tab){
+        if($error){
+            return $error;
         }
-        if(current_user_can($tab->get_option('hide_dashboard_capability', 'edit_posts'))){
-            return;
+        if(!current_user_can($tab->get_option('hide_rest_api_capability', 'read'))){
+            return new WP_Error('rest_user_cannot_view', __('You need a higher level of permission.'), [
+                'status' => 401,
+            ]);
         }
-        wp_safe_redirect(home_url());
-        exit;
+        return null;
     });
 }
 $tab->add_switch([
+    'columns' => 6,
     'id' => 'hide_site',
     'name' => 'Hide the entire site?',
     'std' => false,
 ]);
 $tab->add_text([
+    'columns' => 6,
     'id' => 'hide_site_capability',
     'name' => '— Minimum capability required to show the entire site:',
     'std' => 'read',
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
+    'columns' => 6,
     'id' => 'hide_site_excluded',
     'multiple' => true,
     'name' => '— Excluded pages:',
@@ -101,6 +156,7 @@ $tab->add_field([
     'visible' => array('hide_site', true),
 ]);
 $tab->add_field([
+    'columns' => 6,
     'id' => 'hide_site_special',
     'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/basics/conditional-tags/#the-conditions-for" target="_blank">The Conditions For</a>.',
     'multiple' => true,
@@ -130,47 +186,5 @@ if($tab->get_option('hide_site', false)){
                 }
             }
         }
-    });
-}
-$tab->add_switch([
-    'id' => 'hide_rest_api',
-    'name' => 'Hide the REST API?',
-]);
-$tab->add_text([
-    'id' => 'hide_rest_api_capability',
-    'name' => '— Minimum capability required to show the REST API:',
-    'std' => 'read',
-    'visible' => array('hide_rest_api', true),
-]);
-if($tab->get_option('hide_rest_api', false)){
-    $tab->on('rest_authentication_errors', function($error) use($tab){
-        if($error){
-            return $error;
-        }
-        if(!current_user_can($tab->get_option('hide_rest_api_capability', 'read'))){
-            return new WP_Error('rest_user_cannot_view', __('You need a higher level of permission.'), [
-                'status' => 401,
-            ]);
-        }
-        return null;
-    });
-}
-$tab->add_switch([
-    'id' => 'hide_toolbar',
-    'name' => 'Hide the toolbar?',
-    'std' => true,
-]);
-$tab->add_text([
-    'id' => 'hide_toolbar_capability',
-    'name' => '— Minimum capability required to show the toolbar:',
-    'std' => 'edit_posts',
-    'visible' => array('hide_toolbar', true),
-]);
-if($tab->get_option('hide_toolbar', true)){
-    $tab->on('show_admin_bar', function($show) use($tab){
-        if(!current_user_can($tab->get_option('hide_toolbar_capability', 'edit_posts'))){
-            return false;
-        }
-        return $show;
     });
 }
