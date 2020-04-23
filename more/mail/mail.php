@@ -11,7 +11,7 @@ $tab->add_field([
     'name' => '— Prepend:',
     'rows' => 3,
     'sanitize_callback' => 'none',
-    'std' => '<div style="width: 100%; background-color: #f3f4f5; padding: 40px 20px;"><div style="margin: 0 auto; width: 600px;"><div style="background-color: #fff; color: #6c757d; font-family: \'Helvetica Neue\', sans-serif; font-size: 16px; line-height: 1.5; margin: 0; padding: 20px 40px;">',
+    'std' => '<div style="width: 100%; background-color: #f1f1f1; padding: 40px 20px;"><div style="margin: 0 auto; width: 600px;"><div style="background-color: #fff; border: 1px solid #ccd0d4; color: #444; font-family: \'Helvetica Neue\', sans-serif; margin: 0; padding: 20px 40px;">',
     'type' => 'textarea',
     'visible' => array('email_template', true),
 ]);
