@@ -178,15 +178,21 @@ if(!class_exists('_IFWP_Login')){
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        public function gettext($translation, $text, $domain){
+        public function gettext($translation, $text){
+            $translate = '';
             switch($text){
                 case 'Username or Email Address':
-                    $text = 'Email';
+                    $translate = 'Email';
+                    break;
+                case '<strong>Error</strong>: Enter a username or email address.':
+                    $translate = '<strong>Error</strong>: The email field is empty.';
                     break;
             }
-            $this->off('gettext', [$this, 'gettext'], 10, 3);
-            $translation = translate($text, $domain);
-            $this->on('gettext', [$this, 'gettext'], 10, 3);
+            if($translate){
+                $this->off('gettext', [$this, 'gettext'], 10, 2);
+                $translation = translate($text);
+                $this->on('gettext', [$this, 'gettext'], 10, 2);
+            }
             return $translation;
         }
 

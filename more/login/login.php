@@ -56,7 +56,8 @@ $tab->add_switch([
     'std' => false,
 ]);
 if($tab->get_option('remove_username', false)){
-    $tab->on('gettext', [$tab, 'gettext'], 10, 3);
+    $tab->on('gettext', [$tab, 'gettext'], 10, 2);
+    $tab->off('authenticate', 'wp_authenticate_username_password', 20, 3);
 }
 $tab->add_switch([
     'id' => 'confirm_user_email',
