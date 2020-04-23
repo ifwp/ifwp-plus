@@ -190,7 +190,7 @@ if(!class_exists('_IFWP_Login')){
             }
             if($translate){
                 $this->off('gettext', [$this, 'gettext'], 10, 2);
-                $translation = translate($text);
+                $translation = translate($translate);
                 $this->on('gettext', [$this, 'gettext'], 10, 2);
             }
             return $translation;
