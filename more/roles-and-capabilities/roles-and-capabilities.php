@@ -142,7 +142,6 @@ $tab->add_field([
         'home' => 'Home',
     ),
     'placeholder' => 'Select pages',
-    'std' => 'front_end',
     'type' => 'select_advanced',
     'visible' => array('hide_site', true),
 ]);

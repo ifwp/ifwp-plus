@@ -51,6 +51,14 @@ if($header_url){
 	});
 }
 $tab->add_switch([
+    'id' => 'remove_username',
+    'name' => 'Remove username authentication?',
+    'std' => false,
+]);
+if($tab->get_option('remove_username', false)){
+    $tab->on('gettext', [$tab, 'gettext'], 10, 3);
+}
+$tab->add_switch([
     'id' => 'confirm_user_email',
     'name' => 'Confirm user email?',
     'std' => false,

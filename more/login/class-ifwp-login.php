@@ -178,6 +178,20 @@ if(!class_exists('_IFWP_Login')){
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        public function gettext($translation, $text, $domain){
+            switch($text){
+                case 'Username or Email Address':
+                    $text = 'Email';
+                    break;
+            }
+            $this->off('gettext', [$this, 'gettext'], 10, 3);
+            $translation = translate($text, $domain);
+            $this->on('gettext', [$this, 'gettext'], 10, 3);
+            return $translation;
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
         public function shake_error_codes($shake_error_codes){
             $shake_error_codes[] = 'ifwp_confirm_user_email_pending';
     		return $shake_error_codes;
