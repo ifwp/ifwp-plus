@@ -9,7 +9,7 @@ if(!class_exists('_IFWP_Mail')){
             $template = '';
         	if($html){
         		$template = $this->get_option('prepend');
-                $template .= $html;
+                $template .= wpautop($html);
                 $template .= $this->get_option('append');
         	}
         	return $template;
