@@ -38,6 +38,8 @@ if(!class_exists('_IFWP_Zoom_Request')){
         function __construct($args = []){
             if($args){
                 $this->endpoint = array_shift($args);
+                $this->endpoint = '/' . ltrim($this->endpoint, '/');
+                $this->endpoint = untrailingslashit($this->endpoint);
                 if($args){
                     // If a UUID starts with “/” or contains “//”, you mustdouble encode the UUID before making an API request.
                     $args = array_map('urlencode', $args);
