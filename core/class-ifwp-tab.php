@@ -60,6 +60,12 @@ if(!class_exists('_IFWP_Tab')){
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        public function admin_url(){
+            return admin_url('admin.php?page=' . $this->settings_page_id . '#tab-' . $this->tab_id);
+        }
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
         public function are_plugins_active($plugins = []){
             $r = false;
             if($plugins){
