@@ -21,6 +21,9 @@ $tab2 = new _IFWP_Tab('Checklist', 'Google');
 $items = [];
 $items['Google Analytics'] = $tab->get_option('tracking_id') ? ifwp_dashicon_success() : ifwp_dashicon_error() . ' (<a href="' . $tab->admin_url() . '">Configure</a>)';
 if($items){
+    $tab2->add_custom_html([
+		'std' => '<a class="button" href="https://analytics.google.com" target="_blank">Google Analytics</a>',
+	]);
 	$tab2->add_custom_html([
         'name' => 'Automatically detected',
 		'std' => ifwp_dashtable_auto($items),

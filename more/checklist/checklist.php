@@ -41,6 +41,9 @@ $items['Page Rules > <code>*' . $domain . '/*wp-admin/*</code>'] = 'Security Lev
 $items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Cache Level: Bypass, Disable Apps, Disable Performance';
 if($items){
 	$tab->add_custom_html([
+		'std' => '<a class="button" href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>',
+	]);
+	$tab->add_custom_html([
         'name' => 'Must be manually checked',
 		'std' => ifwp_dashtable($items),
 	]);
