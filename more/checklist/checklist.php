@@ -37,16 +37,16 @@ if($items){
 	$std .= '</tbody>';
 	$std .= '</table>';
 	$tab->add_custom_html([
-        'name' => 'Recommended',
+        'name' => 'Automatically detected',
 		'std' => $std,
 	]);
 }
 
 $items = [];
 $domain = wp_parse_url(site_url(), PHP_URL_HOST);
-$items['Page Rules > *' . $domain . '/*wp-login.php*'] = '— Security Level: High';
-$items['Page Rules > *' . $domain . '/*wp-admin/*'] = '— Security Level: High, Cache Level: Bypass, Disable Apps, Disable Performance';
-$items['Page Rules > *' . $domain . '/*fl_builder'] = '— Rocket Loader: Off';
+$items['Page Rules > <code>*' . $domain . '/*wp-login.php*</code>'] = 'Security Level: High';
+$items['Page Rules > <code>*' . $domain . '/*wp-admin/*</code>'] = 'Security Level: High, Cache Level: Bypass, Disable Apps, Disable Performance';
+$items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Rocket Loader: Off';
 if($items){
 	$std = '<table class="wp-list-table widefat fixed striped pages">';
 	$std .= '<thead>';
@@ -65,7 +65,7 @@ if($items){
 	$std .= '</tbody>';
 	$std .= '</table>';
 	$tab->add_custom_html([
-        'name' => 'Required',
+        'name' => 'Must be manually checked',
 		'std' => $std,
 	]);
 }
