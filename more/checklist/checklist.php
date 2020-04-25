@@ -21,6 +21,9 @@ foreach($shorthand_byte_values as $key => $value){
 $items['PHP > post_max_size <= Network > Maximum Upload Size (100 MB)'] = ($post_max_size <= (100 * MB_IN_BYTES) ? ifwp_dashicon_success() : ifwp_dashicon_error()) . ' (' . size_format($post_max_size) . ')';
 if($items){
 	$tab->add_custom_html([
+		'std' => '<a class="button" href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>',
+	]);
+	$tab->add_custom_html([
         'name' => 'Automatically detected',
 		'std' => ifwp_dashtable_auto($items),
 	]);
@@ -40,9 +43,6 @@ $items['Page Rules > <code>*' . $domain . '/*wp-login.php*</code>'] = 'Security 
 $items['Page Rules > <code>*' . $domain . '/*wp-admin/*</code>'] = 'Security Level: High, Cache Level: Bypass, Disable Apps, Disable Performance';
 $items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Cache Level: Bypass, Disable Apps, Disable Performance';
 if($items){
-	$tab->add_custom_html([
-		'std' => '<a class="button" href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>',
-	]);
 	$tab->add_custom_html([
         'name' => 'Must be manually checked',
 		'std' => ifwp_dashtable($items),

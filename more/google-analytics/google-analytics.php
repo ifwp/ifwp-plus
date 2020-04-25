@@ -17,7 +17,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-$tab2 = new _IFWP_Tab('Checklist', 'Google');
+$tab2 = new _IFWP_Tab('Checklist', 'Google Analytics');
 $items = [];
 $items['Google Analytics'] = $tab->get_option('tracking_id') ? ifwp_dashicon_success() : ifwp_dashicon_error() . ' (<a href="' . $tab->admin_url() . '">Configure</a>)';
 if($items){
