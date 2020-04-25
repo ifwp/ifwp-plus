@@ -20,52 +20,28 @@ foreach($shorthand_byte_values as $key => $value){
 }
 $items['PHP > post_max_size <= Network > Maximum Upload Size (100 MB)'] = ($post_max_size <= (100 * MB_IN_BYTES) ? ifwp_dashicon_success() : ifwp_dashicon_error()) . ' (' . size_format($post_max_size) . ')';
 if($items){
-	$std = '<table class="wp-list-table widefat fixed striped pages">';
-	$std .= '<thead>';
-	$std .= '<tr>';
-	$std .= '<th scope="col">Item</th>';
-	$std .= '<th scope="col">Status</th>';
-	$std .= '</tr>';
-	$std .= '</thead>';
-	$std .= '<tbody>';
-	foreach($items as $item => $status){
-		$std .= '<tr>';
-		$std .= '<td>' . $item . '</td>';
-		$std .= '<td>' . $status . '</td>';
-		$std .= '</tr>';
-	}
-	$std .= '</tbody>';
-	$std .= '</table>';
 	$tab->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => $std,
+		'std' => ifwp_dashtable($items),
 	]);
 }
 
 $items = [];
 $domain = wp_parse_url(site_url(), PHP_URL_HOST);
+$items['SSL/TLS > Overview'] = 'Full';
+$items['SSL/TLS > Edge Certificates <code>*.' . $domain . ', ' . $domain . '</code>'] = 'Active';
+$items['SSL/TLS > Always Use HTTPS'] = 'On';
+$items['SSL/TLS > Automatic HTTPS Rewrites'] = 'On';
+$items['Speed > Optimization > Auto Minify'] = 'JavaScript, CSS, HTML';
+$items['Speed > Optimization > Rocket Loader™'] = 'On';
+$items['Caching > Caching Level'] = 'Standard';
+$items['Caching > Browser Cache TTL'] = '>= 8 days';
 $items['Page Rules > <code>*' . $domain . '/*wp-login.php*</code>'] = 'Security Level: High';
 $items['Page Rules > <code>*' . $domain . '/*wp-admin/*</code>'] = 'Security Level: High, Cache Level: Bypass, Disable Apps, Disable Performance';
-$items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Rocket Loader: Off';
+$items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Cache Level: Bypass, Disable Apps, Disable Performance';
 if($items){
-	$std = '<table class="wp-list-table widefat fixed striped pages">';
-	$std .= '<thead>';
-	$std .= '<tr>';
-	$std .= '<th scope="col">Item</th>';
-	$std .= '<th scope="col">Status</th>';
-	$std .= '</tr>';
-	$std .= '</thead>';
-	$std .= '<tbody>';
-	foreach($items as $item => $status){
-		$std .= '<tr>';
-		$std .= '<td>' . $item . '</td>';
-		$std .= '<td>' . $status . '</td>';
-		$std .= '</tr>';
-	}
-	$std .= '</tbody>';
-	$std .= '</table>';
 	$tab->add_custom_html([
         'name' => 'Must be manually checked',
-		'std' => $std,
+		'std' => ifwp_dashtable($items),
 	]);
 }
