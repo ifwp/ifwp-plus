@@ -22,7 +22,7 @@ $items['PHP > post_max_size <= Network > Maximum Upload Size (100 MB)'] = ($post
 if($items){
 	$tab->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => ifwp_dashtable($items),
+		'std' => ifwp_dashtable_auto($items),
 	]);
 }
 

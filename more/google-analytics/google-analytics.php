@@ -23,7 +23,7 @@ $items['Google Analytics'] = $tab->get_option('tracking_id') ? ifwp_dashicon_suc
 if($items){
 	$tab2->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => ifwp_dashtable($items),
+		'std' => ifwp_dashtable_auto($items),
 	]);
 }
 

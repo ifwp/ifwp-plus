@@ -10,6 +10,33 @@ if(!function_exists('ifwp_dashtable')){
         	$html .= '<thead>';
         	$html .= '<tr>';
         	$html .= '<th scope="col">Item</th>';
+        	$html .= '<th scope="col">Recommended status</th>';
+        	$html .= '</tr>';
+        	$html .= '</thead>';
+        	$html .= '<tbody>';
+        	foreach($data as $key => $value){
+        		$html .= '<tr>';
+        		$html .= '<td>' . $key . '</td>';
+        		$html .= '<td>' . $value . '</td>';
+        		$html .= '</tr>';
+        	}
+        	$html .= '</tbody>';
+        	$html .= '</table>';
+        }
+        return $html;
+	}
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+if(!function_exists('ifwp_dashtable_auto')){
+	function ifwp_dashtable_auto($data = array()){
+        $html = '';
+        if($data){
+            $html .= '<table class="wp-list-table widefat fixed striped">';
+        	$html .= '<thead>';
+        	$html .= '<tr>';
+        	$html .= '<th scope="col">Item</th>';
         	$html .= '<th scope="col">Status</th>';
         	$html .= '</tr>';
         	$html .= '</thead>';
