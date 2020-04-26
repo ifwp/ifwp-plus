@@ -31,12 +31,12 @@ if($items){
 
 $items = [];
 $domain = wp_parse_url(site_url(), PHP_URL_HOST);
-$items['SSL/TLS > Overview'] = 'Full';
+$items['SSL/TLS > Encryption Mode'] = 'Full';
 $items['SSL/TLS > Edge Certificates <code>*.' . $domain . ', ' . $domain . '</code>'] = 'Active';
 $items['SSL/TLS > Always Use HTTPS'] = 'On';
 $items['SSL/TLS > Automatic HTTPS Rewrites'] = 'On';
-$items['Speed > Optimization > Auto Minify'] = 'JavaScript, CSS, HTML';
-$items['Speed > Optimization > Rocket Loader™'] = 'On';
+$items['Speed > Auto Minify'] = 'JavaScript, CSS, HTML';
+$items['Speed > Rocket Loader™'] = 'On';
 $items['Caching > Caching Level'] = 'Standard';
 $items['Caching > Browser Cache TTL'] = '>= 8 days';
 $items['Page Rules > <code>*' . $domain . '/*wp-login.php*</code>'] = 'Security Level: High';
