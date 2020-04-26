@@ -17,16 +17,16 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-$tab2 = new _IFWP_Tab('Checklist', 'Google Analytics');
+$tab2 = new _IFWP_Checklist('Google Analytics');
 $items = [];
-$items['Google Analytics'] = $tab->get_option('tracking_id') ? ifwp_dashicon_success() : ifwp_dashicon_error() . ' (<a href="' . $tab->admin_url() . '">Configure</a>)';
+$items['Google Analytics'] = $tab->get_option('tracking_id') ? $tab2->dashicon_success() : $tab2->dashicon_error() . ' (<a href="' . $tab->admin_url() . '">Configure</a>)';
 if($items){
     $tab2->add_custom_html([
 		'std' => '<a class="button" href="https://analytics.google.com" target="_blank">Google Analytics</a>',
 	]);
 	$tab2->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => ifwp_dashtable_auto($items),
+		'std' => $tab->admin_table($items),
 	]);
 }
 

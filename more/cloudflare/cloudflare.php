@@ -1,10 +1,10 @@
 <?php
 
-$tab = new _IFWP_Tab('Checklist', 'Cloudflare');
+$tab = new _IFWP_Checklist('Cloudflare');
 
 $items = [];
-$items['Cloudflare'] = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? ifwp_dashicon_success() : ifwp_dashicon_error();
-$items['Network > IP Geolocation'] = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? ifwp_dashicon_success() : ifwp_dashicon_error();
+$items['Cloudflare'] = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $tab->dashicon_success() : $tab->dashicon_error();
+$items['Network > IP Geolocation'] = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? $tab->dashicon_success() : $tab->dashicon_error();
 $post_max_size = ini_get('post_max_size');
 $post_max_size = strtoupper($post_max_size);
 $shorthand_byte_values = array(
@@ -18,14 +18,14 @@ foreach($shorthand_byte_values as $key => $value){
 		break;
 	}
 }
-$items['PHP > post_max_size <= Network > Maximum Upload Size (100 MB)'] = ($post_max_size <= (100 * MB_IN_BYTES) ? ifwp_dashicon_success() : ifwp_dashicon_error()) . ' (' . size_format($post_max_size) . ')';
+$items['PHP > post_max_size <= Network > Maximum Upload Size (100 MB)'] = ($post_max_size <= (100 * MB_IN_BYTES) ? $tab->dashicon_success() : $tab->dashicon_error()) . ' (' . size_format($post_max_size) . ')';
 if($items){
 	$tab->add_custom_html([
 		'std' => '<a class="button" href="https://www.cloudflare.com/" target="_blank">Cloudflare</a>',
 	]);
 	$tab->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => ifwp_dashtable_auto($items),
+		'std' => $tab->admin_table($items),
 	]);
 }
 
@@ -45,6 +45,6 @@ $items['Page Rules > <code>*' . $domain . '/*?fl_builder</code>'] = 'Cache Level
 if($items){
 	$tab->add_custom_html([
         'name' => 'Must be manually checked',
-		'std' => ifwp_dashtable($items),
+		'std' => $tab->admin_table($items, false),
 	]);
 }
