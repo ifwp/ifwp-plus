@@ -2,7 +2,7 @@
 
 $tab = new _IFWP_Login('', 'Login');
 $tab->add_field([
-    'label_description' => 'Size: thumbnail.',
+    'label_description' => 'Size: medium.',
     'id' => 'logo',
     'max_file_uploads' => 1,
     'max_status' => false,
@@ -13,7 +13,7 @@ $logo = $tab->get_option('logo', []);
 if($logo){
 	$logo_id = $logo[0];
 	$tab->on('login_enqueue_scripts', function() use($logo_id){
-		$logo = wp_get_attachment_image_src($logo_id); ?>
+		$logo = wp_get_attachment_image_src($logo_id, 'medium'); ?>
 		<style type="text/css">
 			#login {
 				padding: 20px 0 !important;
@@ -21,9 +21,9 @@ if($logo){
 			#login h1 a,
 			.login h1 a {
 				background-image: url(<?php echo $logo[0]; ?>);
-				height: 150px;
-				width: 150px;
-				background-size: 150px;
+				height: <?php echo $logo[1]; ?>px;
+				width: <?php echo $logo[2]; ?>px;
+				background-size: <?php echo $logo[1]; ?>px <?php echo $logo[2]; ?>px;
 			}
 		</style><?php
 	});
