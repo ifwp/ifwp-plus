@@ -18,7 +18,7 @@ if(!class_exists('_IFWP_Checklist')){
             	$html .= '<thead>';
             	$html .= '<tr>';
             	$html .= '<th scope="col">Item</th>';
-            	$html .= '<th scope="col">' . ($auto ? 'Status' : 'Recommended status') . '</th>';
+            	$html .= '<th scope="col">' . ($auto ? 'Status' : 'Recommended value') . '</th>';
             	$html .= '</tr>';
             	$html .= '</thead>';
             	$html .= '<tbody>';

@@ -26,7 +26,7 @@ if($items){
 	]);
 	$tab2->add_custom_html([
         'name' => 'Automatically detected',
-		'std' => $tab->admin_table($items),
+		'std' => $tab2->admin_table($items),
 	]);
 }
 
