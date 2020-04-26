@@ -21,8 +21,8 @@ if($logo){
 			#login h1 a,
 			.login h1 a {
 				background-image: url(<?php echo $logo[0]; ?>);
-				height: <?php echo $logo[1]; ?>px;
-				width: <?php echo $logo[2]; ?>px;
+				height: <?php echo $logo[2]; ?>px;
+				width: <?php echo $logo[1]; ?>px;
 				background-size: <?php echo $logo[1]; ?>px <?php echo $logo[2]; ?>px;
 			}
 		</style><?php
