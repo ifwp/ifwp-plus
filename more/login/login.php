@@ -79,7 +79,6 @@ $tab->add_text([
 $tab->add_field([
     'id' => 'pending',
     'name' => '— Pending message:',
-    'rows' => 1,
     'std' => 'Your email address has not been confirmed yet. Please check your inbox at %s for a confirmation email.',
     'type' => 'textarea',
     'visible' => array('confirm_user_email', true),
@@ -87,7 +86,6 @@ $tab->add_field([
 $tab->add_field([
     'id' => 'message',
     'name' => '— Confirmation message:',
-    'rows' => 1,
     'std' => 'Thanks for confirming your email address.',
     'type' => 'textarea',
     'visible' => array('confirm_user_email', true),
