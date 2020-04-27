@@ -20,7 +20,7 @@ $tab->on('plugins_loaded', function() use($tab){
             }, 10, 4);
         }
         $tab->add_switch([
-            'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/556-set-width-for-rows-and-content#row-drag-handles" target="_blank">Row drag handles: If the row has two columns...</a>.',
+            'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/556-set-width-for-rows-and-content#row-drag-handles" target="_blank">Row drag handles</a>.',
             'id' => 'disable_column_resizing',
             'name' => 'Disable column resizing?',
         ]);
