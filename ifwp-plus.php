@@ -10,12 +10,12 @@ Network:
 Plugin Name: IFWP+
 Plugin URI: https://ifwp.plus
 Text Domain: ifwp-plus
-Version: 0.4.25.14
+Version: 0.4.27.1
 */
 
 defined('ABSPATH') or die("Hi there! I'm just a plugin, not much I can do when called directly.");
 
-define('IFWP_PLUS_VERSION', '0.4.25.14');
+define('IFWP_PLUS_VERSION', '0.4.27.1');
 define('IFWP_PLUS_FILE', __FILE__);
 define('IFWP_PLUS_BASENAME', plugin_basename(IFWP_PLUS_FILE));
 define('IFWP_PLUS_DIR', plugin_dir_path(IFWP_PLUS_FILE));
@@ -26,7 +26,6 @@ define('IFWP_PLUS_URL', plugin_dir_url(IFWP_PLUS_FILE));
 $ifwp_plus = [];
 $ifwp_plus['classes'][] = IFWP_PLUS_DIR . 'core/class-ifwp-plus.php';
 $ifwp_plus['classes'][] = IFWP_PLUS_DIR . 'core/class-ifwp-tab.php';
-$ifwp_plus['classes'][] = IFWP_PLUS_DIR . 'core/class-ifwp-checklist.php';
 $ifwp_plus['functions'][] = IFWP_PLUS_DIR . 'core/functions.php';
 $ifwp_plus['extensions'][] = IFWP_PLUS_DIR . 'core/ifwp-plus.php';
 foreach(glob(IFWP_PLUS_DIR . 'more/*', GLOB_ONLYDIR) as $dir){
