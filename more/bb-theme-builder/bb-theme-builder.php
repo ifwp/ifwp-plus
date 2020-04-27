@@ -4,6 +4,7 @@ $tab = new _IFWP_Tab('Beaver Builder', 'Theme Builder');
 $tab->on('plugins_loaded', function() use($tab){
     if($tab->is_plugin_active('bb-theme-builder/bb-theme-builder.php')){
         $tab->add_switch([
+            'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/basics/conditional-tags/#inside-the-loop" target="_blank">Inside The Loop</a>.',
             'id' => 'in_the_loop',
             'name' => 'Fix in_the_loop?',
             'std' => true,

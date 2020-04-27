@@ -100,6 +100,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         ));
     });
     $tab->add_custom_html([
+        'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/153-customizer-settings-the-general-tab" target="_blank">Customizer settings: The General tab</a> and <a href="https://getbootstrap.com/docs/4.0/content/reboot/" target="_blank">Reboot</a>.',
         'id' => 'reboot_default_styles',
         'name' => 'Reboot default styles?',
         'std' => '<button id="ifwp_reboot_default_styles" class="button">Reboot</button>',
@@ -121,6 +122,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         });
     }
     $tab->add_switch([
+        'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/152-customizer-settings-the-presets-tab" target="_blank">Customizer settings: The Presets tab</a>.',
         'id' => 'remove_presets',
         'name' => 'Remove presets?',
         'std' => true,
