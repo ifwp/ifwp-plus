@@ -4,7 +4,7 @@ $tab = new _IFWP_Tab('Beaver Builder', 'Plugin');
 $tab->on('plugins_loaded', function() use($tab){
     if($tab->is_plugin_active('bb-plugin/fl-builder.php')){
         $tab->add_switch([
-            'label_description' => 'Context: Navigation Mega Menus.',
+            'label_description' => 'Context: navigation mega menus. For details, see <a href="https://developer.wordpress.org/themes/functionality/navigation-menus/" target="_blank">Navigation Menus</a>, <a href="https://kb.wpbeaverbuilder.com/article/99-layout-templates-overview#saved-templates" target="_blank">Saved layout templates</a>, <a href="https://kb.wpbeaverbuilder.com/article/139-set-up-a-mega-menu" target="_blank">Set up a Mega Menu</a> and <a href="https://make.wordpress.org/support/user-manual/getting-to-know-wordpress/screen-options/" target="_blank">Screen Options</a>.',
             'id' => 'expand_templates',
             'name' => 'Expand templates?',
             'std' => true,
@@ -35,6 +35,7 @@ $tab->on('plugins_loaded', function() use($tab){
             });
         }
         $tab->add_switch([
+            'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/658-disable-inline-editing" target="_blank">Disable inline editing</a>.',
             'id' => 'disable_inline_editing',
             'name' => 'Disable inline editing?',
             'std' => true,
@@ -43,6 +44,7 @@ $tab->on('plugins_loaded', function() use($tab){
             $tab->on('fl_inline_editing_enabled', '__return_false');
         }
         $tab->add_switch([
+            'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/555-customize-row-resizing-behavior" target="_blank">Customize row resizing behavior</a>.',
             'id' => 'disable_row_resizing',
             'name' => 'Disable row resizing?',
             'std' => true,
@@ -54,6 +56,7 @@ $tab->on('plugins_loaded', function() use($tab){
             });
         }
         $tab->add_switch([
+            'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/554-add-a-color-palette-to-the-beaver-builder-editor" target="_blank">Add a color palette to the Beaver Builder editor</a> and <a href="https://getbootstrap.com/docs/4.4/utilities/colors/" target="_blank">Colors</a>.',
             'id' => 'b4_colors',
             'name' => 'Use Bootstrap 4 colors?',
             'std' => true,

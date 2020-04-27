@@ -25,7 +25,7 @@ if($tab->get_option('remove_accents', true)){
     $tab->on('sanitize_file_name', 'remove_accents');
 }
 $tab->add_switch([
-    'label_description' => 'Filetypes: Audio and video.',
+    'label_description' => 'Filetypes: audio and video.',
     'id' => 'solve_conflicts',
     'name' => 'Solve filetype conflicts?',
     'std' => true,

@@ -105,7 +105,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         'std' => '<button id="ifwp_reboot_default_styles" class="button">Reboot</button>',
     ]);
     $tab->add_switch([
-        'label_description' => 'You must <a href="' . admin_url('options-general.php?page=fl-builder-settings#tools') . '" target="_blank">clear cache</a> for new settings to take effect.',
+        'label_description' => 'You must <a href="' . admin_url('options-general.php?page=fl-builder-settings#tools') . '">clear cache</a> for new settings to take effect.',
         'id' => 'remove_default_styles',
         'name' => 'Remove default styles?',
         'std' => true,
