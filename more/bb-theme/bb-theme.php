@@ -122,7 +122,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         });
     }
     $tab->add_switch([
-        'label_description' => '<i class="dashicons dashicons-warning"></i> For details, see <a href="https://kb.wpbeaverbuilder.com/article/152-customizer-settings-the-presets-tab" target="_blank">Customizer settings: The Presets tab</a>.',
+        'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/152-customizer-settings-the-presets-tab" target="_blank">Customizer settings: The Presets tab</a>.',
         'id' => 'remove_presets',
         'name' => 'Remove presets?',
         'std' => true,
