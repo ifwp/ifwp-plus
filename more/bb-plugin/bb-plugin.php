@@ -4,7 +4,7 @@ $tab = new _IFWP_Tab('Beaver Builder', 'Plugin');
 $tab->on('plugins_loaded', function() use($tab){
     if($tab->is_plugin_active('bb-plugin/fl-builder.php')){
         $tab->add_switch([
-            'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/functionality/navigation-menus/" target="_blank">Navigation Menus</a>, <a href="https://kb.wpbeaverbuilder.com/article/99-layout-templates-overview#saved-templates" target="_blank">Saved layout templates</a>, <a href="https://kb.wpbeaverbuilder.com/article/139-set-up-a-mega-menu" target="_blank">Set up a Mega Menu</a> and <a href="https://make.wordpress.org/support/user-manual/getting-to-know-wordpress/screen-options/" target="_blank">Screen Options</a>.',
+            'label_description' => 'For details, see <a href="https://developer.wordpress.org/themes/functionality/navigation-menus/" target="_blank">Navigation Menus</a>, <a href="https://kb.wpbeaverbuilder.com/article/99-layout-templates-overview#saved-templates" target="_blank">Saved layout templates</a>, <a href="https://make.wordpress.org/support/user-manual/getting-to-know-wordpress/screen-options/" target="_blank">Screen Options</a> and <a href="https://kb.wpbeaverbuilder.com/article/139-set-up-a-mega-menu" target="_blank">Set up a Mega Menu</a>.',
             'id' => 'expand_templates',
             'name' => 'Expand templates?',
             'std' => true,
