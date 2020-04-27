@@ -122,7 +122,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         });
     }
     $tab->add_switch([
-        'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/152-customizer-settings-the-presets-tab" target="_blank">Customizer settings: The Presets tab</a>.',
+        'label_description' => '<i class="dashicons dashicons-warning"></i> For details, see <a href="https://kb.wpbeaverbuilder.com/article/152-customizer-settings-the-presets-tab" target="_blank">Customizer settings: The Presets tab</a>.',
         'id' => 'remove_presets',
         'name' => 'Remove presets?',
         'std' => true,
@@ -133,6 +133,7 @@ if($current_theme->get('Name') == 'Beaver Builder Theme' or $current_theme->get(
         }, 20);
     }
     $tab->add_switch([
+        'label_description' => 'For details, see <a href="https://kb.wpbeaverbuilder.com/article/553-add-color-presets-to-customizer" target="_blank">Add color presets to Customizer</a> and <a href="https://getbootstrap.com/docs/4.4/utilities/colors/" target="_blank">Colors</a>.',
         'id' => 'b4_colors',
         'name' => 'Use Bootstrap 4 colors?',
         'std' => true,
