@@ -91,7 +91,7 @@ if(!function_exists('ifwp_sideload_file')){
 		if(is_wp_error($file_array['tmp_name'])){
 			return $file_array['tmp_name'];
 		}
-    	$file_array['name'] = $name ? $name : basename($url);
+		$file_array['name'] = $name ? $name : preg_replace('/\?.*/', '', basename($url));
 		$ext = pathinfo($file_array['name'], PATHINFO_EXTENSION);
 		if(!$ext and extension_loaded('fileinfo')){
 			$finfo = finfo_open(FILEINFO_MIME_TYPE);
