@@ -19,7 +19,7 @@ if(!class_exists('_IFWP_Mail')){
 
         public function wp_mail($atts){
             if(isset($atts['message'])){
-                $pattern = '/<\s*?html\b[^>]*>(.*?)<\/html\b[^>]*>/i';
+                $pattern = '/<\s*?html\b[^>]*>(.*?)<\/html\b[^>]*>/is';
                 if(!preg_match($pattern, $atts['message'])){
                     $atts['message'] = $this->add_template($atts['message']);
                 }
