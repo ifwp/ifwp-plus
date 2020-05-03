@@ -193,7 +193,7 @@ if(!function_exists('ifwp_parse_response')){
 		} else {
 			$response_body = wp_remote_retrieve_body($response);
 			$response_code = wp_remote_retrieve_response_code($response);
-            if($response_body and $response_code){
+            if($response_code){
                 $response_message = wp_remote_retrieve_response_message($response);
 				if(!$response_message){
 					$response_message = get_status_header_desc($response_code);
