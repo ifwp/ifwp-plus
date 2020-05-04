@@ -9,3 +9,20 @@ $tab->add_custom_html([
 $tab->on('wp_enqueue_scripts', function(){
     wp_enqueue_script('ifwp-functions', IFWP_PLUS_URL . 'core/functions.js', array('jquery'), IFWP_PLUS_VERSION);
 });
+
+$tab2 = new _IFWP_Tab('', 'REST API');
+$tab2->add_switch([
+    'id' => 'fix_shutdown',
+    'name' => 'Fix shutdown?',
+    'std' => true,
+]);
+if($tab2->get_option('fix_shutdown', true)){
+    $tab2->on('wp_die_handler', function($function){
+        if($function === '_default_wp_die_handler'){ // check for another plugins
+            if(defined('REST_REQUEST') and REST_REQUEST){
+                $function = apply_filters('wp_die_json_handler', '_json_wp_die_handler');
+            }
+        }
+        return $function;
+	});
+}
